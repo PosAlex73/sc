@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreThreadMessagesRequest;
+use App\Http\Requests\UpdateThreadMessagesRequest;
+use App\Models\ThreadMessages;
+use Illuminate\Routing\Controller;
 
 class ThreadMessagesController extends Controller
 {
@@ -30,10 +32,10 @@ class ThreadMessagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreThreadMessagesRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreThreadMessagesRequest $request)
     {
         //
     }
@@ -41,10 +43,10 @@ class ThreadMessagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ThreadMessages  $threadMessages
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ThreadMessages $threadMessages)
     {
         //
     }
@@ -52,10 +54,10 @@ class ThreadMessagesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ThreadMessages  $threadMessages
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ThreadMessages $threadMessages)
     {
         //
     }
@@ -63,11 +65,11 @@ class ThreadMessagesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateThreadMessagesRequest  $request
+     * @param  \App\Models\ThreadMessages  $threadMessages
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateThreadMessagesRequest $request, ThreadMessages $threadMessages)
     {
         //
     }
@@ -75,10 +77,10 @@ class ThreadMessagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\ThreadMessages  $threadMessages
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ThreadMessages $threadMessages)
     {
         //
     }

@@ -51,9 +51,7 @@ class Installation extends Migration
             $table->id();
             $table->string('title', 255)->nullable(false);
             $table->text('message')->nullable(false);
-            $table->unsignedBigInteger('user_id')->nullable(false);
             $table->unsignedBigInteger('group_id')->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('group_id')->references('id')->on('groups');
             $table->timestamps();
         });
@@ -93,6 +91,8 @@ class Installation extends Migration
             $table->text('message')->nullable(false);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('thread_id');
+            $table->foreign('thread_id')->references('id')->on('threads');
             $table->string('status', 1)->default(\App\Enums\ThreadMessageTypes::UNREAD);
             $table->timestamps();
         });

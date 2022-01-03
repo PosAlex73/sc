@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title', 'description', 'short_description', 'status', 'user_id', 'type'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
