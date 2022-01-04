@@ -17,6 +17,9 @@ use App\Observers\UserProfileObserver;
 
 class ObserverRegister
 {
+    /**
+     * @return void
+     */
     public static function registerObservers()
     {
         User::observe(UserObserver::class);
