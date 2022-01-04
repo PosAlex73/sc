@@ -6,7 +6,7 @@ use App\Http\Requests\StoreAdminNotificationsRequest;
 use App\Http\Requests\UpdateAdminNotificationsRequest;
 use App\Models\AdminNotifications;
 
-class AdminNotificationsController extends Controller
+class AdminNotificationsController extends AdminController
 {
     /**
      * Display a listing of the resource.

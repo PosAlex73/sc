@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateGroupMessageRequest;
 use App\Models\GroupMessage;
 use Illuminate\Routing\Controller;
 
-class GroupMessageController extends Controller
+class GroupMessageController extends AdminController
 {
     /**
      * Display a listing of the resource.

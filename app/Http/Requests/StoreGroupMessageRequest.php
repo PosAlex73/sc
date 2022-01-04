@@ -13,7 +13,7 @@ class StoreGroupMessageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreGroupMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|min:2|max:255',
+            'message' => 'required',
+            'group_id' => 'required|exists:group_messages'
         ];
     }
 }

@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateUserNotificationRequest;
 use App\Models\UserNotification;
 use Illuminate\Routing\Controller;
 
-class UserNotificationController extends Controller
+class UserNotificationController extends AdminController
 {
     /**
      * Display a listing of the resource.

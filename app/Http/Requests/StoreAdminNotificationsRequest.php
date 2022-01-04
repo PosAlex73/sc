@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\AdminNotifications;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAdminNotificationsRequest extends FormRequest
@@ -13,7 +14,9 @@ class StoreAdminNotificationsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $notification = AdminNotifications::find($this->route('admin_notifications'));
+
+        return $notification && $this->user()->can('update', $notification);
     }
 
     /**
@@ -24,7 +27,11 @@ class StoreAdminNotificationsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => 'required|integer|exists:users',
+            'title' => 'required|min:2|max:255',
+            'message' => 'required',
+            'status' => 'required',
+            'type' => 'required'
         ];
     }
 }

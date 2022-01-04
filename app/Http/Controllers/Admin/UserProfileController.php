@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateUserProfileRequest;
 use App\Models\UserProfile;
 use Illuminate\Routing\Controller;
 
-class UserProfileController extends Controller
+class UserProfileController extends AdminController
 {
     /**
      * Display a listing of the resource.

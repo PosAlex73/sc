@@ -19,7 +19,7 @@ class AdminCheck
     {
         $user = $request->user();
 
-        if (!empty($user) && in_array($user->role, [UserTypes::ADMIN, UserTypes::MODERATOR])) {
+        if (!empty($user) && in_array($user->type, [UserTypes::ADMIN, UserTypes::MODERATOR])) {
             return $next($request);
         }
 

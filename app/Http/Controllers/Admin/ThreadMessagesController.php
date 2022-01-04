@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateThreadMessagesRequest;
 use App\Models\ThreadMessages;
 use Illuminate\Routing\Controller;
 
-class ThreadMessagesController extends Controller
+class ThreadMessagesController extends AdminController
 {
     /**
      * Display a listing of the resource.

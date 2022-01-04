@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserTypes;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSettingRequest extends FormRequest
@@ -13,7 +14,11 @@ class StoreSettingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        if (in_array($this->user()->role, [UserTypes::admins()])) {
+            return true;
+        }
+
+        return true;
     }
 
     /**
@@ -24,7 +29,7 @@ class StoreSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
         ];
     }
 }

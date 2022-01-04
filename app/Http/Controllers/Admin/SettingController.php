@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateSettingRequest;
 use App\Models\Setting;
 use Illuminate\Routing\Controller;
 
-class SettingController extends Controller
+class SettingController extends AdminController
 {
     /**
      * Display a listing of the resource.

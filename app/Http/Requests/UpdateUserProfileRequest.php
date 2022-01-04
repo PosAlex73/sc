@@ -13,7 +13,7 @@ class UpdateUserProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateUserProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => 'required|exists:users',
+            'settings' => 'required'
         ];
     }
 }

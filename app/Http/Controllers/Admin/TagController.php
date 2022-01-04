@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Routing\Controller;
 
-class TagController extends Controller
+class TagController extends AdminController
 {
     /**
      * Display a listing of the resource.

@@ -13,7 +13,7 @@ class StoreThreadMessagesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreThreadMessagesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'message' => 'required',
+            'user_id' => 'required',
+            'thread_id' => 'required',
+            'status' => 'required'
         ];
     }
 }

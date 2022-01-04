@@ -7,7 +7,7 @@ use App\Http\Requests\UpdatePageRequest;
 use App\Models\Page;
 use Illuminate\Routing\Controller;
 
-class PageController extends Controller
+class PageController extends AdminController
 {
     /**
      * Display a listing of the resource.
