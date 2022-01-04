@@ -16,7 +16,9 @@ class PageController extends AdminController
      */
     public function index()
     {
-        //
+        $pages = Page::paginate(static::getPagination());
+
+        return view('admin.pages.list', ['pages' => $pages]);
     }
 
     /**
@@ -26,7 +28,7 @@ class PageController extends AdminController
      */
     public function create()
     {
-        //
+
     }
 
     /**
