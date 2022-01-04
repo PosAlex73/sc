@@ -2,8 +2,6 @@
 
 namespace App\Enums;
 
-use Facade\FlareClient\Enums\GroupingTypes;
-
 class GroupTypes extends CommonStatuses
 {
     public const BANNED = 3;

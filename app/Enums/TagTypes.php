@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-class TagTypes
+class TagTypes extends AEnum
 {
     public const COMMON = 1;
 }

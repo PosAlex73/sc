@@ -2,9 +2,7 @@
 
 namespace App\Enums;
 
-use ReflectionClass;
-
-class UserTypes
+class UserTypes extends AEnum
 {
     public const ADMIN = 1;
     public const MODERATOR = 2;
@@ -15,10 +13,5 @@ class UserTypes
         return [
             static::MODERATOR, static::ADMIN
         ];
-    }
-
-    public static function getAll() {
-        $oClass = new ReflectionClass(__CLASS__);
-        return $oClass->getConstants();
     }
 }

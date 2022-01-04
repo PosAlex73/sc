@@ -3,7 +3,10 @@
 @include('static.meta')
 <body>
 @include('static.header')
-@yield('content')
+<main>
+    @include('static.admin_side')
+    @yield('content')
+</main>
 @include('static.footer')
 </body>
 @include('static.scripts')
