@@ -16,7 +16,9 @@ class AdminNotificationsController extends AdminController
      */
     public function index()
     {
-        //
+        $admin_notes = AdminNotifications::paginate(static::getPagination());
+
+        return view('admin.admin_notifications.list', ['admin_notes' => $admin_notes]);
     }
 
     /**
@@ -26,7 +28,7 @@ class AdminNotificationsController extends AdminController
      */
     public function create()
     {
-        //
+        return view('admin.admin_notifications.create');
     }
 
     /**
@@ -37,7 +39,9 @@ class AdminNotificationsController extends AdminController
      */
     public function store(StoreAdminNotificationsRequest $request)
     {
-        //
+        $admin_note = AdminNotifications::create($request->all());
+
+        return redirect(route('admin_notifications.edit', ['admin_notifications' => $admin_note]));
     }
 
     /**
@@ -48,7 +52,7 @@ class AdminNotificationsController extends AdminController
      */
     public function show(AdminNotifications $adminNotifications)
     {
-        //
+        return view('admin.admin_notifications.show', ['admin_note' => $adminNotifications]);
     }
 
     /**
@@ -59,7 +63,7 @@ class AdminNotificationsController extends AdminController
      */
     public function edit(AdminNotifications $adminNotifications)
     {
-        //
+        return view('admin.admin_notifications.edit', ['admin_note' => $adminNotifications]);
     }
 
     /**
@@ -71,7 +75,9 @@ class AdminNotificationsController extends AdminController
      */
     public function update(UpdateAdminNotificationsRequest $request, AdminNotifications $adminNotifications)
     {
-        //
+        $adminNotifications::update($request->all());
+
+        return view('admin.admin_notifications.edit', ['admin_note' => $adminNotifications]);
     }
 
     /**
@@ -82,7 +88,9 @@ class AdminNotificationsController extends AdminController
      */
     public function destroy(AdminNotifications $adminNotifications)
     {
-        //
+        AdminNotifications::destroy($adminNotifications);
+
+        return redirect(route('admin_notifications.index'));
     }
 
     public function massDelete(Request $request)

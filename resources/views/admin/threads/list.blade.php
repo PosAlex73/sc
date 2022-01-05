@@ -1,12 +1,12 @@
 @extends('layouts.base')
 @section('content')
-    <form action="{{ route('users.mass_delete') }}" method="post">
+    <form action="{{ route('threads.mass_delete') }}" method="post">
         @csrf
         <div class="container d-flex justify-content-between">
-            <a href="{{ route('users.create') }}" class="btn btn-primary">{{ __('var.create_new') }}</a>
+            <a href="{{ route('threads.create') }}" class="btn btn-primary">{{ __('var.create_new') }}</a>
             <button type="submit" class="btn btn-danger">{{ __('var.delete_selected') }}</button>
         </div>
-        @if($users->count() > 0)
+        @if($threads->count() > 0)
             <table class="table">
                 <thead>
                 <tr>

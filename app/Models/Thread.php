@@ -17,4 +17,14 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function messages()
+    {
+        return $this->hasMany(ThreadMessage::class);
+    }
+
+    public function getMessagesCountAttribute()
+    {
+        return $this->messages()->count();
+    }
 }

@@ -29,11 +29,7 @@ class UserController extends AdminController
      */
     public function create()
     {
-        $context = [
-            'user_types' => UserTypes::getAll(),
-        ];
-
-        return view('admin.users.create', $context);
+        return view('admin.users.create');
     }
 
     /**
@@ -69,7 +65,6 @@ class UserController extends AdminController
     public function edit(User $user)
     {
         $context = [
-            'user_types' => UserTypes::getAll(),
             'user' => $user
         ];
 

@@ -4,6 +4,8 @@ namespace App\Enums;
 
 class UserTypes extends AEnum
 {
+    use TEnumConstants;
+
     public const ADMIN = 1;
     public const MODERATOR = 2;
     public const SIMPLE = 3;

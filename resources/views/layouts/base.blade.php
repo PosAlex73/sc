@@ -3,9 +3,9 @@
 @include('static.meta')
 <body>
 @include('static.header')
-<main>
+<main style="margin-left: 280px;">
     @include('static.admin_side')
-    <div style="margin-left: 280px;" class="p-3">
+    <div class="p-3">
         @yield('content')
     </div>
 </main>

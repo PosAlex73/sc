@@ -6,7 +6,6 @@ use App\Http\Requests\StoreThreadRequest;
 use App\Http\Requests\UpdateThreadRequest;
 use App\Models\Thread;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
 class ThreadController extends AdminController
 {

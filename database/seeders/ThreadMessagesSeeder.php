@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ThreadMessages;
 use Illuminate\Database\Seeder;
 
 class ThreadMessagesSeeder extends Seeder
@@ -13,6 +14,6 @@ class ThreadMessagesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        ThreadMessages::factory()->count(500)->create();
     }
 }

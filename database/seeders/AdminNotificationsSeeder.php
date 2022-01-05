@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AdminNotifications;
 use Illuminate\Database\Seeder;
 
 class AdminNotificationsSeeder extends Seeder
@@ -13,6 +14,6 @@ class AdminNotificationsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        AdminNotifications::factory()->count(100)->create();
     }
 }
