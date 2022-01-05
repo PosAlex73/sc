@@ -5,7 +5,9 @@
 @include('static.header')
 <main>
     @include('static.admin_side')
-    @yield('content')
+    <div style="margin-left: 280px;" class="p-3">
+        @yield('content')
+    </div>
 </main>
 @include('static.footer')
 </body>

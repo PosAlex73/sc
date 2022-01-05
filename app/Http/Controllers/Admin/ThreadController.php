@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreThreadRequest;
 use App\Http\Requests\UpdateThreadRequest;
 use App\Models\Thread;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class ThreadController extends AdminController
@@ -16,7 +17,9 @@ class ThreadController extends AdminController
      */
     public function index()
     {
-        //
+        $threads = Thread::paginate(static::getPagination());
+
+        return view('admin.threads.list', ['threads' => $threads]);
     }
 
     /**
@@ -26,7 +29,7 @@ class ThreadController extends AdminController
      */
     public function create()
     {
-        //
+        return view('admin.threads.create');
     }
 
     /**
@@ -37,7 +40,9 @@ class ThreadController extends AdminController
      */
     public function store(StoreThreadRequest $request)
     {
-        //
+        $thread = Thread::created($request->all());
+
+        return redirect(route('threads.edit', ['thread' => $thread]));
     }
 
     /**
@@ -48,7 +53,7 @@ class ThreadController extends AdminController
      */
     public function show(Thread $thread)
     {
-        //
+        return view('admin.threads.show', ['thread' => $thread]);
     }
 
     /**
@@ -59,7 +64,7 @@ class ThreadController extends AdminController
      */
     public function edit(Thread $thread)
     {
-        //
+        return view('admin.threads.edit', ['thread' => $thread]);
     }
 
     /**
@@ -71,7 +76,9 @@ class ThreadController extends AdminController
      */
     public function update(UpdateThreadRequest $request, Thread $thread)
     {
-        //
+        $thread::update($request->all());
+
+        return redirect(route('threads.edit', ['thread' => $thread]));
     }
 
     /**
@@ -82,6 +89,15 @@ class ThreadController extends AdminController
      */
     public function destroy(Thread $thread)
     {
-        //
+        Thread::destroy($thread);
+
+        return redirect(route('admin.threads.list'));
+    }
+
+    public function massDelete(Request $request)
+    {
+        Thread::destroy($request->threads);
+
+        return redirect(route('threads.index'));
     }
 }

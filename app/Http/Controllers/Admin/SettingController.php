@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreSettingRequest;
 use App\Http\Requests\UpdateSettingRequest;
 use App\Models\Setting;
-use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Request;
 
 class SettingController extends AdminController
 {
@@ -16,7 +15,9 @@ class SettingController extends AdminController
      */
     public function index()
     {
-        //
+        $settings = Setting::all();
+
+        return view('admin.settings.list', ['settings' => $settings]);
     }
 
     /**
@@ -26,18 +27,17 @@ class SettingController extends AdminController
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSettingRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSettingRequest $request)
+    public function store()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -48,7 +48,7 @@ class SettingController extends AdminController
      */
     public function show(Setting $setting)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -59,7 +59,7 @@ class SettingController extends AdminController
      */
     public function edit(Setting $setting)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -71,7 +71,7 @@ class SettingController extends AdminController
      */
     public function update(UpdateSettingRequest $request, Setting $setting)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -82,6 +82,17 @@ class SettingController extends AdminController
      */
     public function destroy(Setting $setting)
     {
-        //
+        return abort(404);
+    }
+
+    public function massUpdate(UpdateSettingRequest $request)
+    {
+        $settings = $request->get('settings');
+
+        foreach ($settings as $setting) {
+            Setting::where('title', $setting['title'])->update('value', $setting['value']);
+        }
+
+        return redirect(route('settings.index'));
     }
 }

@@ -6,6 +6,7 @@ use App\Enums\UserTypes;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends AdminController
 {
@@ -100,5 +101,12 @@ class UserController extends AdminController
         User::destroy($user);
 
         return view('admin.users.list');
+    }
+
+    public function massDelete(Request $request)
+    {
+        User::destroy($request->users);
+
+        return redirect(route('users.index'));
     }
 }

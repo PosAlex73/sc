@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StorePageRequest;
 use App\Http\Requests\UpdatePageRequest;
 use App\Models\Page;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class PageController extends AdminController
@@ -28,7 +29,7 @@ class PageController extends AdminController
      */
     public function create()
     {
-
+        return view('admin.pages.create');
     }
 
     /**
@@ -39,7 +40,9 @@ class PageController extends AdminController
      */
     public function store(StorePageRequest $request)
     {
-        //
+        $page = Page::create($request->all());
+
+        return redirect(route('pages.edit', ['page' => $page]));
     }
 
     /**
@@ -50,7 +53,7 @@ class PageController extends AdminController
      */
     public function show(Page $page)
     {
-        //
+        return view('admin.pages.show', ['page' => $page]);
     }
 
     /**
@@ -61,7 +64,7 @@ class PageController extends AdminController
      */
     public function edit(Page $page)
     {
-        //
+        return view('admin.pages.edit', ['page' => $page]);
     }
 
     /**
@@ -73,7 +76,9 @@ class PageController extends AdminController
      */
     public function update(UpdatePageRequest $request, Page $page)
     {
-        //
+        $page::update($request->all());
+
+        return redirect(route('pages.edit', ['page' => $page]));
     }
 
     /**
@@ -84,6 +89,15 @@ class PageController extends AdminController
      */
     public function destroy(Page $page)
     {
-        //
+        Page::destroy($page);
+
+        return redirect(route('pages.index'));
+    }
+
+    public function massDelete(Request $request)
+    {
+        Page::destroy($request->pages);
+
+        return redirect(route('pages.index'));
     }
 }

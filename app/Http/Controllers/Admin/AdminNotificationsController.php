@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreAdminNotificationsRequest;
 use App\Http\Requests\UpdateAdminNotificationsRequest;
 use App\Models\AdminNotifications;
+use Illuminate\Http\Request;
 
 class AdminNotificationsController extends AdminController
 {
@@ -82,5 +83,12 @@ class AdminNotificationsController extends AdminController
     public function destroy(AdminNotifications $adminNotifications)
     {
         //
+    }
+
+    public function massDelete(Request $request)
+    {
+        AdminNotifications::destroy($request->admin_notifications);
+
+        return redirect(route('admin_notifications.index'));
     }
 }

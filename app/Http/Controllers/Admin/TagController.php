@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class TagController extends AdminController
@@ -16,7 +17,9 @@ class TagController extends AdminController
      */
     public function index()
     {
-        //
+        $tags = Tag::paginate(static::getPagination());
+
+        return view('admin.tags.list', $tags);
     }
 
     /**
@@ -26,7 +29,7 @@ class TagController extends AdminController
      */
     public function create()
     {
-        //
+        return view('admin.tags.create');
     }
 
     /**
@@ -37,7 +40,9 @@ class TagController extends AdminController
      */
     public function store(StoreTagRequest $request)
     {
-        //
+        $tag = Tag::create($request->all());
+
+        return redirect(route('tags.edit', ['tag' => $tag]));
     }
 
     /**
@@ -48,7 +53,7 @@ class TagController extends AdminController
      */
     public function show(Tag $tag)
     {
-        //
+        return view('admin.tags.show', ['tag' => $this]);
     }
 
     /**
@@ -59,7 +64,7 @@ class TagController extends AdminController
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('admin.tags.edit', ['tag' => $tag]);
     }
 
     /**
@@ -71,7 +76,9 @@ class TagController extends AdminController
      */
     public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $tag::update($request->all());
+
+        return redirect(route('tags.edit', ['tag' => $tag]));
     }
 
     /**
@@ -82,6 +89,15 @@ class TagController extends AdminController
      */
     public function destroy(Tag $tag)
     {
-        //
+        Tag::destroy($tag);
+
+        return redirect(route('admin.tags.list'));
+    }
+
+    public function massDelete(Request $request)
+    {
+        Tag::destroy($request->tags);
+
+        return redirect(route('tags.index'));
     }
 }

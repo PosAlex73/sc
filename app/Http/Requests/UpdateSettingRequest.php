@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserTypes;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSettingRequest extends FormRequest
@@ -13,7 +14,11 @@ class UpdateSettingRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if ($this->user()->type === UserTypes::ADMIN) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -24,7 +29,7 @@ class UpdateSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'settings' => 'required|array'
         ];
     }
 }

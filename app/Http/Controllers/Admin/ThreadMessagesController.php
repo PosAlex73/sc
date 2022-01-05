@@ -16,7 +16,9 @@ class ThreadMessagesController extends AdminController
      */
     public function index()
     {
-        //
+        $messages = ThreadMessages::all();
+
+
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreGroupRequest;
 use App\Http\Requests\UpdateGroupRequest;
 use App\Models\Group;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class GroupController extends AdminController
@@ -83,5 +84,12 @@ class GroupController extends AdminController
     public function destroy(Group $group)
     {
         //
+    }
+
+    public function massDelete(Request $request)
+    {
+        Group::destroy($request->groups);
+
+        return redirect(route('groups.index'));
     }
 }
