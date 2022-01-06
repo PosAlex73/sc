@@ -8,7 +8,7 @@ use Illuminate\View\View;
 
 class StaticDataComposer
 {
-    public function __compose(View $view)
+    public function compose(View $view)
     {
         $view->with([
             'statuses' => CommonStatuses::getAll(),

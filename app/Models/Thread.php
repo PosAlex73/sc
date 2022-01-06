@@ -20,7 +20,7 @@ class Thread extends Model
 
     public function messages()
     {
-        return $this->hasMany(ThreadMessage::class);
+        return $this->hasMany(ThreadMessages::class);
     }
 
     public function getMessagesCountAttribute()

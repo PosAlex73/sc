@@ -76,7 +76,9 @@ class PageController extends AdminController
      */
     public function update(UpdatePageRequest $request, Page $page)
     {
-        $page::update($request->all());
+        Page::where(['id' => $page->id])->update($request->all(
+            'title', 'text', 'status', 'type'
+        ));
 
         return redirect(route('pages.edit', ['page' => $page]));
     }

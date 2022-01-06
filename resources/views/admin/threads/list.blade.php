@@ -12,23 +12,21 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">{{ __('vars.name') }}</th>
-                    <th scope="col">{{ __('vars.email') }}</th>
-                    <th scope="col">{{ __('vars.status') }}</th>
-                    <th scope="col">{{ __('vars.type') }}</th>
+                    <th scope="col">{{ __('vars.messages') }}</th>
+                    <th scope="col">{{ __('vars.create') }}</th>
                     <th scope="col">{{ __('vars.delete') }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($users as $user)
+                @foreach($threads as $thread)
                     <tr>
-                        <th scope="row">{{ $user->id }}</th>
-                        <td><a href="{{ route('users.edit', ['user' => $user]) }}">{{ $user->name }}</a></td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ __('enums.user_status_' . $user->status) }}</td>
-                        <td>{{ __('enums.user_type_' . $user->type) }}</td>
+                        <th scope="row">{{ $thread->id }}</th>
+                        <td><a href="{{ route('threads.edit', ['thread' => $thread]) }}">{{ $thread->user->name }}</a></td>
+                        <td>{{ $thread->messages_count }}</td>
+                        <td>{{ $thread->created_at }}</td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="users[]" value="{{ $user->id }}" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" name="threads[]" value="{{ $thread->id }}" id="flexCheckChecked">
                             </div>
                         </td>
                     </tr>
@@ -36,7 +34,7 @@
                 </tbody>
             </table>
         @else
-            <p>{{ __('vars.no_users_found') }}</p>
+            <p>{{ __('vars.no_threads_found') }}</p>
         @endif
     </form>
 @endsection

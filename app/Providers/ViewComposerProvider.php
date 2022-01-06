@@ -29,7 +29,7 @@ class ViewComposerProvider extends ServiceProvider
     public function boot()
     {
         View::composer('static.admin_side', AdminSideMenu::class);
-        View::composer(['admin.pages'], StaticDataComposer::class);
+        View::composer(['admin.pages.*'], StaticDataComposer::class);
         View::composer('admin.tags', TagTypes::class);
         View::composer('admin.threads', SimpleUserComposer::class);
     }

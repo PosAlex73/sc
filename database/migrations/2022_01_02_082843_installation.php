@@ -36,15 +36,15 @@ class Installation extends Migration
             $table->string('status', 1)->default(\App\Enums\CommonStatuses::ACTIVE);
             $table->text('short_description', 1024)->nullable(true);
             $table->unsignedBigInteger('user_id')->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('type', 1)->default(\App\Enums\GroupTypes::ACTIVE);
         });
 
         Schema::create('groups_users', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('group_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::create('group_messages', function (Blueprint $table) {
@@ -52,7 +52,7 @@ class Installation extends Migration
             $table->string('title', 255)->nullable(false);
             $table->text('message')->nullable(false);
             $table->unsignedBigInteger('group_id')->nullable(false);
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
 
@@ -82,7 +82,7 @@ class Installation extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
@@ -90,9 +90,9 @@ class Installation extends Migration
             $table->id();
             $table->text('message')->nullable(false);
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('thread_id');
-            $table->foreign('thread_id')->references('id')->on('threads');
+            $table->foreign('thread_id')->references('id')->on('threads')->onDelete('cascade')->onUpdate('cascade');
             $table->string('status', 1)->default(\App\Enums\ThreadMessageTypes::UNREAD);
             $table->timestamps();
         });
@@ -100,7 +100,7 @@ class Installation extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('settings');
             $table->timestamps();
         });
@@ -108,7 +108,7 @@ class Installation extends Migration
         Schema::create('user_notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('title', 255)->nullable(false);
             $table->text('message')->nullable(true);
             $table->string('status', 1)->default(\App\Enums\ThreadMessageTypes::UNREAD);
