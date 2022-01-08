@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Composers\SimpleUserComposer;
 use App\Composers\StaticDataComposer;
+use App\Composers\UserStaticDataComposer;
 use App\Enums\TagTypes;
 use App\Menus\AdminSideMenu;
 use Illuminate\Support\Facades\View;
@@ -30,7 +31,8 @@ class ViewComposerProvider extends ServiceProvider
     {
         View::composer('static.admin_side', AdminSideMenu::class);
         View::composer(['admin.pages.*'], StaticDataComposer::class);
-        View::composer('admin.tags', TagTypes::class);
-        View::composer('admin.threads', SimpleUserComposer::class);
+        View::composer('admin.tags.*', TagTypes::class);
+        View::composer('admin.threads.*', SimpleUserComposer::class);
+        View::composer('admin.users.*', UserStaticDataComposer::class);
     }
 }
