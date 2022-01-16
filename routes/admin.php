@@ -6,6 +6,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('/admin')->group(function() {
         Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin_dashboard');
 
+        Route::get('', function() {
+           return redirect(route('admin_dashboard'));
+        });
+
         Route::resource('admin_notifications', \App\Http\Controllers\Admin\AdminNotificationsController::class);
         Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index']);
         Route::resource('groups', \App\Http\Controllers\Admin\GroupController::class);
